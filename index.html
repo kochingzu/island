@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>造島計畫入口</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  /* 一個海島世界：淺海藍底、深海軍藍字，四座島各一色（與 Padlet 欄位、簡報一致） */
+  --sea:#EAF5F8; --sea-deep:#BFE0EA; --ink:#17324D; --ink-soft:#3E5A72; --paper:#FFFDF8; --sand:#F3E2BF; --gold:#F6C85F;
+  --red:#D6544A; --red-ink:#B8433B; --red-tint:#FBE3E0;
+  --yellow:#E8B923; --yellow-ink:#8A6500; --yellow-tint:#FFF4C2;
+  --blue:#2F7FC1; --blue-ink:#2468A0; --blue-tint:#DDEBF7;
+  --green:#3E9B5F; --green-ink:#2E7D4B; --green-tint:#DFF0E4;
+  --display:"LXGW WenKai TC","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:linear-gradient(180deg,#F4FAFB 0%,var(--sea) 55%,#D8EDF3 100%);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;min-height:100%}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 48px;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;padding:4px 14px;border-radius:999px;letter-spacing:.04em}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,6vw,56px);line-height:1.15;margin:10px 0 4px;text-wrap:balance}
+.lead{margin:0;color:var(--ink-soft);font-size:18px}
+.supply{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:12px 18px;text-decoration:none;font-weight:700;box-shadow:0 4px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.supply:hover{transform:translateY(-1px)}
+.supply:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.supply small{display:block;font-weight:400;font-size:13px;color:var(--ink-soft)}
+.tasks{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.task{background:var(--paper);border-radius:18px;padding:18px 20px;box-shadow:0 6px 18px rgba(23,50,77,.08)}
+.task h2{font-family:var(--display);font-size:22px;margin:0 0 8px;display:flex;align-items:center;gap:10px}
+.tag{font-family:var(--body);font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--sea-deep);color:var(--ink)}
+.task ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px}
+.section-title{font-family:var(--display);font-size:28px;margin:0;text-wrap:balance}
+.section-title span{font-family:var(--body);font-size:16px;font-weight:400;color:var(--ink-soft);margin-left:8px}
+.islands{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.island{--c:var(--blue);--ci:var(--blue-ink);--ct:var(--blue-tint);display:flex;flex-direction:column;gap:12px;background:var(--paper);border-radius:22px;padding:18px 18px 20px;border-top:10px solid var(--c);box-shadow:0 8px 22px rgba(23,50,77,.10);position:relative}
+.island.red{--c:var(--red);--ci:var(--red-ink);--ct:var(--red-tint)}
+.island.yellow{--c:var(--yellow);--ci:var(--yellow-ink);--ct:var(--yellow-tint)}
+.island.green{--c:var(--green);--ci:var(--green-ink);--ct:var(--green-tint)}
+.island .pic{background:var(--ct);border-radius:14px;padding:8px;display:flex;justify-content:center;align-items:center;aspect-ratio:1/0.82}
+.island .pic img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.island h3{font-family:var(--display);font-size:26px;margin:0;color:var(--ci)}
+.island .gift{margin:0;font-weight:500}
+.island h3 .team{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-left:10px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--body);font-size:17px;font-weight:700;vertical-align:middle}
+.island.yellow h3 .team{color:var(--ink)}
+.island .keys{margin:0;font-size:14px;color:var(--ink-soft)}
+.island .keys b{color:var(--ink)}
+.go{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ci);color:var(--paper);text-decoration:none;font-weight:700;font-size:17px;padding:12px 14px;border-radius:14px;transition:filter .15s}
+.go:hover{filter:brightness(1.1)}
+.mine{display:none;position:absolute;top:12px;right:12px;background:var(--gold);color:var(--ink);font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px}
+.island.is-mine .mine{display:block}
+.island.is-mine{outline:4px solid var(--gold);outline-offset:2px}
+.tour{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);border-radius:22px;padding:20px 24px}
+.tour h2{font-family:var(--display);font-size:24px;margin:0 0 4px}
+.tour p{margin:0;color:#BFD8E3}
+.tour a{background:var(--gold);color:var(--ink);text-decoration:none;font-weight:700;padding:12px 20px;border-radius:14px;white-space:nowrap}
+.rules{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.unlock{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.unlock label{font-weight:700;color:var(--paper)}
+.unlock input{width:130px;font:inherit;font-size:20px;padding:8px 12px;border-radius:12px;border:2px solid var(--gold);background:var(--paper);color:var(--ink)}
+.unlock button{font:inherit;font-weight:700;padding:9px 18px;border-radius:12px;border:0;background:var(--gold);color:var(--ink);cursor:pointer}
+.unlock-msg{flex-basis:100%;margin:0;font-size:15px;color:#FFD9D3;min-height:1.2em}
+.tour a[hidden],.unlock[hidden]{display:none}
+.rules span{font-size:14px;background:rgba(255,253,248,.12);padding:3px 10px;border-radius:999px;color:var(--paper)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.classes{display:flex;flex-wrap:wrap;gap:12px}
+.cls{font-family:var(--display);font-size:28px;font-weight:700;min-width:120px;padding:10px 22px;border-radius:16px;border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .1s}
+.cls:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.cls[aria-pressed="true"]{background:var(--ink);color:var(--gold)}
+.step-no{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:18px;margin-right:10px;vertical-align:middle}
+.hint{margin:0;color:var(--red-ink);font-weight:700}
+.locked .island{opacity:.45;filter:grayscale(.5)}
+.locked .go{pointer-events:none}
+footer{font-size:13px;color:var(--ink-soft);text-align:center}
+@media (max-width:900px){.islands{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.islands,.tasks{grid-template-columns:1fr}.supply{width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <span class="eyebrow">七年級閱讀課｜教育雲電子書平台</span>
+      <h1>造島計畫：我們的閱讀群島</h1>
+      <p class="lead">每一本書都是一份物資。選一座島，把你借的書運上去。</p>
+    </div>
+    <a class="supply" href="https://oidcebook.nlpi.edu.tw" target="_blank" rel="noopener">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h7a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z M20 5h-7a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span>補給站：去借書<small>教育雲電子書平台</small></span>
+    </a>
+  </header>
+
+  <section class="tasks" aria-label="今天的任務">
+    <div class="task">
+      <h2>第一節 <span class="tag">運送物資</span></h2>
+      <ol>
+        <li>到補給站登入，借一本符合你那座島的書</li>
+        <li>點下方你的島，按「＋」發文：<b>座號＋姓名｜書名</b>，內容寫作者</li>
+        <li>開始閱讀，把最精彩或最有用的一句話抄在白紙上</li>
+      </ol>
+    </div>
+    <div class="task">
+      <h2>第二節 <span class="tag">完成物資卡</span></h2>
+      <ol>
+        <li>回到你的島，找到上次的貼文，按「⋯」→「編輯」</li>
+        <li>補上<b>書中金句</b>和<b>有了這本書，島民可以…</b></li>
+        <li>編輯不了？就重新發一則完整的物資卡</li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="pick-class" style="display:flex;flex-direction:column;gap:14px">
+    <h2 class="section-title" id="pick-class"><span class="step-no">1</span>先選你的班級</h2>
+    <div class="classes" role="group" aria-label="班級">
+      <button class="cls" type="button" data-class="701" aria-pressed="false">701</button>
+      <button class="cls" type="button" data-class="702" aria-pressed="false">702</button>
+      <button class="cls" type="button" data-class="703" aria-pressed="false">703</button>
+      <button class="cls" type="button" data-class="704" aria-pressed="false">704</button>
+      <button class="cls" type="button" data-class="705" aria-pressed="false">705</button>
+    </div>
+  </section>
+
+  <section class="locked" aria-labelledby="pick" style="display:flex;flex-direction:column;gap:16px">
+    <h2 class="section-title" id="pick"><span class="step-no">2</span>選一座島，登島報到<span>每座島 4～5 人，額滿選第二志願</span></h2>
+    <p class="hint" id="hint">先在上面選好你的班級，島嶼才會打開。</p>
+    <div class="islands" id="islands">
+      <article class="island red" data-island="comic">
+        <span class="mine">我的島</span>
+        <div class="pic"><img src="img/isle-comic.webp" alt="漫畫動漫島：調色盤形狀的小島，插著畫筆和漫畫書" width="440" height="440" loading="eager"></div>
+        <h3>漫畫動漫島<span class="team">紅</span></h3>
+        <p class="gift">帶給島民：放鬆與歡笑</p>
+        <p class="keys"><b>找書關鍵字</b>：漫畫、圖像小說、繪本</p>
+        <a class="go" data-link href="#">登上這座島 →</a>
+      </article>
+      <article class="island yellow" data-island="story">
+        <span class="mine">我的島</span>
+        <div class="pic"><img src="img/isle-story.webp" alt="文學故事島：翻開的大書上長出森林和城堡" width="440" height="440" loading="eager"></div>
+        <h3>文學故事島<span class="team">黃</span></h3>
+        <p class="gift">帶給島民：故事與感受</p>
+        <p class="keys"><b>找書關鍵字</b>：小說、少年小說、散文、詩、奇幻、推理</p>
+        <a class="go" data-link href="#">登上這座島 →</a>
+      </article>
+      <article class="island blue" data-island="science">
+        <span class="mine">我的島</span>
+        <div class="pic"><img src="img/isle-science.webp" alt="科學知識島：有天文台和瀑布的小島" width="440" height="440" loading="eager"></div>
+        <h3>科學知識島<span class="team">藍</span></h3>
+        <p class="gift">帶給島民：好奇與解答</p>
+        <p class="keys"><b>找書關鍵字</b>：科學、動物、自然、太空、人體、科普</p>
+        <a class="go" data-link href="#">登上這座島 →</a>
+      </article>
+      <article class="island green" data-island="life">
+        <span class="mine">我的島</span>
+        <div class="pic"><img src="img/isle-life.webp" alt="生活休閒島：有小咖啡館和帆船的小島" width="440" height="440" loading="eager"></div>
+        <h3>生活休閒島<span class="team">綠</span></h3>
+        <p class="gift">帶給島民：運動、手作、心理等生活大小事</p>
+        <p class="keys"><b>找書關鍵字</b>：運動、料理、手作、旅行、雜誌、心理、人際</p>
+        <a class="go" data-link href="#">登上這座島 →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="tour" aria-label="逛島">
+    <div>
+      <h2>逛島時間：看看整片群島</h2>
+      <p>第二節逛島時，老師會公布密碼。輸入後就能打開你們班的整片群島。</p>
+      <div class="rules"><span>每人 3 顆心</span><span>只送其他島</span><span>送給最想借來看的那一本</span></div>
+    </div>
+    <div class="unlock" id="unlock">
+      <label for="tourCode">逛島密碼</label>
+      <input id="tourCode" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="老師會公布">
+      <button type="button" id="tourBtn">開啟</button>
+      <p class="unlock-msg" id="tourMsg" role="status"></p>
+    </div>
+    <a href="#" data-link-all target="_blank" rel="noopener" hidden>打開整片群島 →</a>
+  </section>
+
+  <footer>造島計畫｜七年級閱讀課</footer>
+</div>
+<script>
+// 每個班的整面造島牆；分組連結（每座島各一個）拿到後填入，空白時會先連到該班整面造島牆
+const CLASSES = {
+  "701": { wall: "https://padlet.com/kochingzu5/701-_-s0254uw2bou7fyp5ml1c",
+           comic: "https://padlet.com/kochingzu5/breakout-room/K8wMqGd7EYGAvZJO-oO6VvPdMWxWmvrwD",
+           story: "https://padlet.com/kochingzu5/breakout-room/J7pj4olGePK62KMG-oO6VvPdMWxWmvrwD",
+           science: "https://padlet.com/kochingzu5/breakout-room/Vnr04VOWpNRZ2BdW-oO6VvPdMWxWmvrwD",
+           life: "https://padlet.com/kochingzu5/breakout-room/Arng4Mkw6RagqK6p-oO6VvPdMWxWmvrwD" },
+  "702": { wall: "https://padlet.com/kochingzu5/702-_-s025ck49hp5u59iauaad", 
+           comic: "https://padlet.com/kochingzu5/breakout-room/ke9KqzYJKAby2YQG-1OL2bZWn3grmzaK3",
+           story: "https://padlet.com/kochingzu5/breakout-room/8G57v1ga5QPN2dVX-1OL2bZWn3grmzaK3",
+           science: "https://padlet.com/kochingzu5/breakout-room/gx604eBm9zMx2YGo-1OL2bZWn3grmzaK3",
+           life: "https://padlet.com/kochingzu5/breakout-room/nEw64OwemoQ54aPB-1OL2bZWn3grmzaK3" },
+  "703": { wall: "https://padlet.com/kochingzu5/703-_-s025ck7v1tiupj0f59ru", 
+           comic: "https://padlet.com/kochingzu5/breakout-room/Bk5x4dLz3ZWK4Zgz-K5gBvarZnlRJbpV7",
+           story: "https://padlet.com/kochingzu5/breakout-room/olbw23ZaDyWJ4L30-K5gBvarZnlRJbpV7",
+           science: "https://padlet.com/kochingzu5/breakout-room/E1Xd49kaDW3mqGJr-K5gBvarZnlRJbpV7",
+           life: "https://padlet.com/kochingzu5/breakout-room/PkpnqAa7DZEJqD0B-K5gBvarZnlRJbpV7" },
+  "704": { wall: "https://padlet.com/kochingzu5/704-_-s025ck8qivpg0tbmomgy", 
+           comic: "https://padlet.com/kochingzu5/breakout-room/eXwgvwGJVQP8vybR-k2qlv3Qe7y9Dz5Rx",
+           story: "https://padlet.com/kochingzu5/breakout-room/kxPM2kBEpYMN4gbV-k2qlv3Qe7y9Dz5Rx",
+           science: "https://padlet.com/kochingzu5/breakout-room/x1rD2JLwJj6bv0dM-k2qlv3Qe7y9Dz5Rx",
+           life: "https://padlet.com/kochingzu5/breakout-room/1L8k2PlNpVg32EQN-k2qlv3Qe7y9Dz5Rx" },
+  "705": { wall: "https://padlet.com/kochingzu5/705-_-s025ckc5pz5ik7s60fld", 
+           comic: "https://padlet.com/kochingzu5/breakout-room/nRxeqrlVgewQ456P-pmywv9glRl97zGA8",
+           story: "https://padlet.com/kochingzu5/breakout-room/3jXMqpQREGwavAzx-pmywv9glRl97zGA8",
+           science: "https://padlet.com/kochingzu5/breakout-room/d6AO26JaD9BN2ojL-pmywv9glRl97zGA8",
+           life: "https://padlet.com/kochingzu5/breakout-room/ke9KqzYJKAmx2YQG-pmywv9glRl97zGA8" }
+};
+const islandsBox = document.getElementById("islands");
+const hint = document.getElementById("hint");
+const tour = document.querySelector("[data-link-all]");
+let current = null;
+// 逛島密碼：上課時老師口頭公布；要換密碼就改這裡
+const TOUR_CODE = "2026";
+let tourOpen = false;
+const unlockBox = document.getElementById("unlock");
+const codeInput = document.getElementById("tourCode");
+const tourMsg = document.getElementById("tourMsg");
+function tryUnlock(){
+  if (!current) { tourMsg.textContent = "請先在上面選好班級。"; return; }
+  if (codeInput.value.trim() === TOUR_CODE) {
+    tourOpen = true;
+    unlockBox.hidden = true;
+    tour.hidden = false;
+  } else {
+    tourMsg.textContent = "密碼不對，等老師公布再試試。";
+  }
+}
+document.getElementById("tourBtn").addEventListener("click", tryUnlock);
+codeInput.addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
+
+function setClass(c){
+  if (!CLASSES[c]) return;
+  current = c;
+  document.querySelectorAll(".cls").forEach(b => b.setAttribute("aria-pressed", b.dataset.class === c ? "true" : "false"));
+  const cfg = CLASSES[c];
+  document.querySelectorAll(".island").forEach(card => {
+    const a = card.querySelector("[data-link]");
+    a.href = cfg[card.dataset.island] || cfg.wall;
+    a.removeAttribute("aria-disabled");
+  });
+  tour.href = cfg.wall;
+  tour.removeAttribute("aria-disabled");
+  islandsBox.parentElement.classList.remove("locked");
+  hint.textContent = c + " 班的島嶼已經打開，點你選的那座島。";
+  hint.style.color = "var(--green-ink)";
+  try { localStorage.setItem("myClass", c); } catch (e) {}
+  if (location.hash !== "#c" + c) history.replaceState(null, "", "#c" + c);
+  markMine();
+}
+function lock(){
+  islandsBox.parentElement.classList.add("locked");
+  document.querySelectorAll("[data-link]").forEach(a => { a.href = "#"; a.setAttribute("aria-disabled","true"); });
+  tour.href = "#"; tour.setAttribute("aria-disabled","true");
+}
+function markMine(){
+  let k = null;
+  try { k = localStorage.getItem("myIsland-" + current); } catch (e) {}
+  document.querySelectorAll(".island").forEach(c => c.classList.toggle("is-mine", c.dataset.island === k));
+}
+document.querySelectorAll(".cls").forEach(b => b.addEventListener("click", () => setClass(b.dataset.class)));
+document.querySelectorAll(".island").forEach(card => {
+  const a = card.querySelector("[data-link]");
+  a.target = "_blank"; a.rel = "noopener";
+  a.addEventListener("click", e => {
+    if (!current) { e.preventDefault(); hint.scrollIntoView({behavior:"smooth", block:"center"}); return; }
+    try { localStorage.setItem("myIsland-" + current, card.dataset.island); } catch (err) {}
+    markMine();
+  });
+});
+tour.addEventListener("click", e => { if (!current || !tourOpen) { e.preventDefault(); } });
+
+lock();
+let start = (location.hash.match(/^#c(70[1-5])$/) || [])[1];
+if (!start) { try { start = localStorage.getItem("myClass"); } catch (e) {} }
+if (start) setClass(start);
+window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(70[1-5])$/); if (m) setClass(m[1]); });
+</script>
+</body>
+</html>
